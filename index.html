@@ -2,32 +2,49 @@
 <title>Desafio Jonas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=Montserrat:wght@500;600;700&display=swap');
-:root{--g:#1f3a34;--c:#f2ece0;--o:#c9a45c}
-*{box-sizing:border-box}body{margin:0;background:var(--g);color:var(--c);font:500 18px/1.6 Montserrat,sans-serif;text-align:center}
-section{max-width:640px;margin:auto;padding:56px 24px}
+:root{--g:#1f3a34;--g2:#172d28;--c:#f2ece0;--o:#c9a45c}
+*{box-sizing:border-box}body{margin:0;background:var(--g);color:var(--c);font:500 17px/1.6 Montserrat,sans-serif;text-align:center}
+section{max-width:640px;margin:auto;padding:48px 24px}
 h1,h2{font-family:'Playfair Display',serif;margin:0 0 16px;line-height:1.15}
-h1{font-size:56px}h1 em{color:var(--o);font-style:normal;display:block;font-size:72px}
-h2{font-size:34px;color:var(--o)}
-.tag{color:var(--o);font-weight:600;letter-spacing:.1em;font-size:14px}
-.sub{font-family:'Playfair Display',serif;font-style:italic;font-size:24px}
-.btn{display:block;background:var(--o);color:var(--g);font-weight:700;padding:20px;border-radius:50px;text-decoration:none;margin:28px auto 0;max-width:420px}
-.card{border:1px solid var(--o);border-radius:16px;padding:20px;margin:12px 0;text-align:left}
-.card b{color:var(--o)}
-.price{font:700 64px 'Playfair Display',serif;color:var(--o)}
-hr{border:0;border-top:1px solid rgba(201,164,92,.4);max-width:640px}
+h2{font-size:32px;color:var(--o)}
+.hero{position:relative;padding:0;max-width:none;background:linear-gradient(rgba(23,45,40,.55),rgba(31,58,52,.95)),url(mesa.jpg) center/cover}
+.hero div{max-width:640px;margin:auto;padding:56px 24px 48px}
+.tag{display:inline-block;border:1px solid var(--o);color:var(--o);font-weight:700;letter-spacing:.1em;font-size:13px;padding:6px 14px;border-radius:30px}
+h1{font-size:44px;margin-top:20px}h1 em{color:var(--o);font-style:normal}
+.sub{font-size:19px;opacity:.95}
+.btn{display:block;background:var(--o);color:var(--g2);font-weight:700;font-size:19px;padding:20px;border-radius:50px;text-decoration:none;margin:28px auto 0;max-width:420px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mini{font-size:14px;opacity:.85;margin-top:12px}
+.alt{background:var(--g2);max-width:none}.alt>div{max-width:640px;margin:auto}
+.step{display:flex;gap:16px;align-items:center;text-align:left;border:1px solid var(--o);border-radius:16px;padding:16px 20px;margin:12px 0}
+.ic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--o);color:var(--g2);display:flex;align-items:center;justify-content:center;font-size:24px}
+.step b{display:block;color:var(--o)}
+.foto{width:100%;max-width:420px;border-radius:20px;border:3px solid var(--o);margin-bottom:16px}
+.price{font:700 68px 'Playfair Display',serif;color:var(--o);line-height:1}
+.l{list-style:none;padding:0;text-align:left}.l li{padding:8px 0 8px 32px;position:relative}.l li:before{content:"✓";position:absolute;left:0;color:var(--o);font-weight:700}
+.q{text-align:left;border-bottom:1px solid rgba(201,164,92,.4);padding:14px 0}.q b{color:var(--o);display:block}
 small{opacity:.8}
 </style></head><body>
-<section><div class="tag">PRÉ-VENDA · 10 VAGAS</div><h1>Desafio<em>Jonas</em></h1>
-<p class="sub">Memorize o capítulo 1 de Jonas (ARA), com método.</p>
-<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Entrar no Desafio Jonas</a></section><hr>
-<section><h2>Como funciona</h2>
-<div class="card"><b>1.</b> Você entra pelo link e recebe o acesso.</div>
-<div class="card"><b>2.</b> Uma semana liberada por vez, com a semana 1 já pronta.</div>
-<div class="card"><b>3.</b> Uma música a cappella por semana para ajudar a fixar.</div>
-<div class="card"><b>4.</b> Dúvidas tiradas com o Abner.</div></section><hr>
-<section><h2>Para quem é</h2><p>Para quem já tentou decorar a Bíblia e desistiu por falta de método.</p></section><hr>
-<section><h2>Quem conduz</h2><p>Abner Gonzales, seminarista e missionário há mais de 10 anos.</p></section><hr>
+<section class="hero"><div><span class="tag">PRÉ-VENDA · 10 VAGAS</span>
+<h1>Memorize <em>Jonas 1</em> em 16 dias, 1 verso por dia</h1>
+<p class="sub">Com música cantada e sem decoreba. Para quem já tentou decorar e esqueceu.</p>
+<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Garanta sua vaga · R$ 27</a>
+<p class="mini">Vagas até sábado, 24/10 · Início na segunda, 26/10</p></div></section>
+<section><h2>Você já passou por isso?</h2><p>Lê, memoriza com empenho e, uma semana depois, o verso sumiu. O problema quase nunca é a sua memória. É a falta de um método simples e de um ritmo possível.</p></section>
+<section class="alt"><div><h2>Como funciona</h2>
+<div class="step"><span class="ic">📖</span><div><b>1 verso por dia</b>Poucos minutos, na ARA, durante 16 dias.</div></div>
+<div class="step"><span class="ic">🗓️</span><div><b>Entrega semanal</b>Uma semana liberada por vez, com a semana 1 já pronta.</div></div>
+<div class="step"><span class="ic">🎵</span><div><b>Música cantada por semana</b>Uma música a cappella para ajudar a fixar.</div></div>
+<div class="step"><span class="ic">🔑</span><div><b>Acesso pelo link</b>Você entra pelo link e recebe o acesso.</div></div>
+<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Garanta sua vaga</a></div></section>
+<section><h2>Para quem é</h2><ul class="l"><li>Quem já tentou decorar a Bíblia e desistiu</li><li>Quem tem pouco tempo por dia</li><li>Quem quer guardar a Escritura no coração, com calma e constância</li></ul>
+<p><small>Não é para quem busca aula ao vivo: o conteúdo é gravado e liberado por semana.</small></p></section>
+<section class="alt"><div><img class="foto" src="casal2.jpg" alt="Abner e Débora"><h2>Quem conduz</h2><p>Abner Gonzales, seminarista e missionário há mais de 10 anos. Ele mesmo levou mais de um mês para memorizar Jonas e criou este caminho para você chegar lá com mais leveza.</p></div></section>
 <section><div class="price">R$ 27</div><p>Pré-venda com 10 vagas, até sábado, 24/10.<br>Início na segunda, 26/10, até 10/11.</p>
-<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Entrar no Desafio Jonas</a>
-<p><small>@abnerferreiragonzales</small></p></section>
+<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Entrar no Desafio Jonas</a><p class="mini">Pagamento por Pix ou cartão, pela Kiwify.</p></section>
+<section class="alt"><div><h2>Perguntas</h2>
+<div class="q"><b>Não tenho tempo.</b>São poucos minutos por dia, um verso de cada vez.</div>
+<div class="q"><b>Minha memória é ruim.</b>O método foi pensado justamente para isso.</div>
+<div class="q"><b>Como recebo?</b>Pelo link da compra, por e-mail.</div>
+<div class="q"><b>É só Jonas?</b>É o piloto. Depois podem vir outros livros.</div>
+<a class="btn" href="https://pay.kiwify.com.br/MY8Q8Ta">Garanta sua vaga</a><p class="mini">@abnerferreiragonzales</p></div></section>
 </body></html>
