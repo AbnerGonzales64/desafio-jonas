@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Teste de nivelamento de inglês, gratuito, com correção na hora. Cerca de 15 minutos, do A1 ao C1.">
+<meta name="theme-color" content="#1f3a34">
+<title>Teste de nivelamento de inglês</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f3a34'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23c9a45c'/%3E%3C/svg%3E">
+<style>
+:root {
+  --forest: #1f3a34;
+  --forest-deep: #172d28;
+  --ink: #1c2b27;
+  --muted: #243833;
+  --cream: #f3eee4;
+  --paper: #fbf8f2;
+  --on-forest: #f2ece0;
+  --gold: #c9a45c;
+  --gold-hover: #d4b36a;
+  --line: rgba(31, 58, 52, 0.16);
+  --ok: #0f5132;
+  --bad: #7f1d1d;
+  --bad-bg: #f8e8e4;
+}
+* { box-sizing: border-box; }
+html { font-size: 100%; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font: 400 1.0625rem/1.55 "Segoe UI", system-ui, sans-serif;
+}
+[hidden] { display: none !important; }
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  transform: translateY(-160%);
+  background: var(--paper);
+  color: var(--forest-deep);
+  padding: 0.55rem 0.85rem;
+  z-index: 5;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.skip:focus { transform: none; }
+:focus-visible {
+  outline: 3px solid var(--forest);
+  outline-offset: 3px;
+}
+header {
+  background: var(--forest);
+  color: var(--on-forest);
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.miolo {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 1rem;
+}
+header .miolo { padding-top: 1.45rem; padding-bottom: 1.45rem; }
+.marca {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+h1, h2, h3, .nivel, .pontos, .promessa p {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  text-wrap: balance;
+}
+h1 {
+  margin: 0.3rem 0 0;
+  font-size: clamp(1.85rem, 5vw, 2.65rem);
+  line-height: 1.12;
+  font-weight: 700;
+}
+h2 {
+  margin: 1.35rem 0 0.55rem;
+  color: var(--forest);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.2;
+}
+h3 {
+  margin: 1.15rem 0 0.4rem;
+  font-size: 1.05rem;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+p { margin: 0.45rem 0; }
+.fatos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.9rem 0 0.2rem;
+}
+.fatos li {
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-weight: 700;
+  color: var(--forest);
+  background: var(--paper);
+}
+.promessa {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem 1rem;
+  background: var(--paper);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+}
+.olho {
+  margin: 0 0 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+.promessa p {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.35;
+  color: var(--forest);
+}
+.passos { margin: 0.3rem 0 0.2rem; padding-left: 1.2rem; }
+.passos li { margin: 0.4rem 0; }
+.nota { color: var(--muted); font-size: 0.95rem; }
+button.primary, button.secundario {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  margin: 0.7rem auto;
+  border-radius: 999px;
+  padding: 0.95rem 1.2rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-align: center;
+  touch-action: manipulation;
+}
+button.primary {
+  background: var(--gold);
+  color: var(--forest-deep);
+  border: 2px solid var(--gold);
+  box-shadow: 0 8px 24px rgba(23, 45, 40, 0.18);
+}
+button.primary:hover { background: var(--gold-hover); border-color: var(--gold-hover); }
+button.secundario {
+  background: transparent;
+  color: var(--forest);
+  border: 2px solid var(--forest);
+}
+button.secundario:hover { background: rgba(31, 58, 52, 0.06); }
+#progresso {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--forest);
+}
+.trilha {
+  height: 8px;
+  background: rgba(31, 58, 52, 0.12);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0 0 0.85rem;
+}
+.trilha > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+}
+#titulo-nivel { margin-top: 0; }
+.ctx { margin: 0 0 0.55rem; color: var(--muted); }
+#regra-nivel {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.85rem;
+  background: rgba(201, 164, 92, 0.2);
+  border-radius: 12px;
+}
+.alerta {
+  background: var(--bad-bg);
+  color: var(--bad);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  font-weight: 700;
+  margin: 0 0 0.85rem;
+}
+fieldset {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-inline-size: 0;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  margin: 0 0 0.85rem;
+  padding: 0.85rem 0.85rem 0.5rem;
+  scroll-margin-top: 0.75rem;
+}
+fieldset.pendente { border-color: var(--bad); box-shadow: inset 4px 0 0 var(--bad); }
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.cabeca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 0.45rem;
+}
+.tipo {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  color: var(--forest);
+}
+.num { font-weight: 700; color: var(--forest); font-size: 0.95rem; }
+.enunciado {
+  flex: 1 0 100%;
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+.falta {
+  flex: 1 0 100%;
+  color: var(--bad);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.7rem 0.65rem;
+  border-radius: 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+  overflow-wrap: break-word;
+}
+.opcao:hover { background: rgba(201, 164, 92, 0.18); }
+.opcao:focus-within { outline: 3px solid var(--forest); outline-offset: 2px; }
+.opcao:has(input:checked) {
+  background: rgba(31, 58, 52, 0.08);
+  box-shadow: inset 0 0 0 2px var(--forest);
+}
+.opcao input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.15rem 0 0;
+  flex: none;
+  accent-color: var(--forest);
+}
+.opcao input:focus { outline: none; }
+.letra { font-weight: 700; color: var(--forest); min-width: 1.7rem; }
+.pontos {
+  display: inline-block;
+  margin: 0.15rem 0 0;
+  font-size: 4.25rem;
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--forest);
+  border-bottom: 4px solid var(--gold);
+}
+.pontos-legenda {
+  margin: 0.35rem 0 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+.recomendado {
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  background: var(--paper);
+  padding: 0.95rem 1rem 1rem;
+  margin: 1rem 0;
+}
+.recomendado h3 { margin: 0; }
+.nivel {
+  margin: 0.35rem 0;
+  font-size: clamp(1.55rem, 4vw, 2.05rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--forest);
+  overflow-wrap: break-word;
+}
+.significado { margin: 0.15rem 0 0; font-size: 1.125rem; }
+#tela-resultado > h2 { margin-top: 1.7rem; }
+#tela-resultado > h2:first-child { margin-top: 0; }
+#por-bloco { list-style: none; padding: 0; margin: 0.2rem 0 0.6rem; }
+#por-bloco li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+#por-bloco .nome { font-weight: 700; color: var(--forest); min-width: 2.5rem; }
+.selo { font-weight: 700; }
+.selo.ok { color: var(--ok); }
+.selo.ruim { color: var(--bad); }
+.conferencia { color: var(--muted); }
+#revisao { list-style: none; padding: 0; margin: 0.4rem 0 0; }
+#revisao li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left-width: 6px;
+  border-radius: 16px;
+  padding: 0.85rem 0.9rem;
+  margin: 0 0 0.75rem;
+}
+#revisao li.certa { border-left-color: var(--ok); }
+#revisao li.incorreta { border-left-color: var(--bad); }
+.meta { margin: 0 0 0.35rem; }
+.julgamento { font-weight: 700; }
+li.certa .julgamento { color: var(--ok); }
+li.incorreta .julgamento { color: var(--bad); }
+.porque {
+  margin: 0.55rem 0 0;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--line);
+}
+.rotulo { font-weight: 700; color: var(--forest); }
+#autoavaliacao {
+  background: var(--forest);
+  color: var(--on-forest);
+  border-radius: 16px;
+  padding: 1.05rem 1.05rem 1.15rem;
+  margin-top: 1.5rem;
+}
+#autoavaliacao h2 { margin: 0 0 0.45rem; color: var(--on-forest); }
+#autoavaliacao h3 {
+  margin: 1rem 0 0.3rem;
+  color: var(--on-forest);
+  font-family: Georgia, "Iowan Old Style", Palatino, serif;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 1.28rem;
+}
+#autoavaliacao .aviso-baixo {
+  margin-top: 0.95rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(242, 236, 224, 0.35);
+  font-weight: 700;
+}
+h2[tabindex="-1"]:focus { outline: none; }
+main:focus { outline: none; }
+footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
+@media (forced-colors: active) {
+  .trilha > span { background: Highlight; }
+  button.primary, button.secundario, fieldset { border: 2px solid ButtonText; }
+  #revisao li.certa, #revisao li.incorreta { border-left-color: CanvasText; }
+}
+@media print {
+  header { background: #fff; color: #000; }
+  button, .skip, .trilha, footer { display: none !important; }
+  body, #autoavaliacao { background: #fff; color: #000; }
+  #autoavaliacao h2, #autoavaliacao h3 { color: #000; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header>
+  <div class="miolo">
+    <p class="marca">Nivelamento</p>
+    <h1>Teste de nivelamento de inglês</h1>
+  </div>
+</header>
+<main id="conteudo" tabindex="-1">
+  <div class="miolo">
+    <noscript>
+      <p class="nota">Para fazer o teste, ative o JavaScript. A correção acontece neste aparelho e as respostas não são enviadas.</p>
+    </noscript>
+
+    <section id="tela-intro">
+      <h2>O que é este teste</h2>
+      <p>Um teste de múltipla escolha para indicar em que nível você começa um curso de inglês, do iniciante ao avançado. As questões estão em inglês e usam situações de quem vai morar em outro país.</p>
+      <ul class="fatos">
+        <li>Cerca de 15 minutos</li>
+        <li>Gratuito</li>
+        <li>Sem cadastro</li>
+      </ul>
+      <blockquote class="promessa">
+        <p class="olho">Promessa do curso</p>
+        <p>Saia do zero e tenha o inglês que você precisa pra morar, trabalhar e fazer amizades em outro país.</p>
+      </blockquote>
+      <h2>Como funciona</h2>
+      <ol class="passos">
+        <li>Responda em ordem, sem dicionário. Os blocos vão do A1 ao C1, com 6 questões cada, e ficam mais difíceis.</li>
+        <li>O nível está aprovado com 4 ou mais acertos. Se você errar 3 ou mais, o teste para: esse é o seu nível de entrada.</li>
+        <li>No final você vê a pontuação, o nível recomendado e a revisão com as explicações.</li>
+      </ol>
+      <div class="acoes">
+        <button type="button" class="primary" id="comecar">Começar o teste</button>
+      </div>
+      <p class="nota">Suas respostas ficam só neste aparelho e não são enviadas.</p>
+    </section>
+
+    <section id="tela-nivel" hidden>
+      <h2 id="titulo-nivel" tabindex="-1"></h2>
+      <p class="ctx" id="contexto-nivel"></p>
+      <p id="progresso"></p>
+      <div class="trilha" id="trilha" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-labelledby="progresso">
+        <span id="barra"></span>
+      </div>
+      <p id="regra-nivel"></p>
+      <p id="erro-nivel" class="alerta" role="alert" hidden></p>
+      <div id="questoes"></div>
+      <div class="acoes">
+        <button type="button" class="primary" id="continuar">Continuar</button>
+      </div>
+    </section>
+
+    <section id="tela-resultado" hidden>
+      <h2 id="titulo-resultado" tabindex="-1">Seu resultado</h2>
+      <p class="pontos" id="pontos"></p>
+      <p class="pontos-legenda">pontos</p>
+      <p id="resumo-pontos"></p>
+      <p id="frase-parada"></p>
+      <p id="niveis-seguintes" hidden></p>
+      <div class="recomendado">
+        <h3>Nível recomendado</h3>
+        <p class="nivel" id="nivel-recomendado"></p>
+        <p class="olho">Significado deste nível</p>
+        <p class="significado" id="significado"></p>
+      </div>
+      <h3>Por bloco</h3>
+      <ul id="por-bloco"></ul>
+      <p class="conferencia">Um nível está aprovado com 4 ou mais acertos em 6. A pontuação total serve de conferência; vale o primeiro nível não aprovado.</p>
+      <div class="acoes">
+        <button type="button" class="secundario" id="refazer">Refazer o teste</button>
+      </div>
+      <h2>Revisão das respostas</h2>
+      <p>Confira o que você marcou e a explicação de cada questão respondida.</p>
+      <ol id="revisao"></ol>
+      <section id="autoavaliacao">
+        <h2>Tarefas opcionais de autoavaliação</h2>
+        <p>Estas tarefas não entram na pontuação. Faça por conta própria, se quiser, e compare com o nível recomendado.</p>
+        <h3>Compreensão de áudio</h3>
+        <p>Ouça um aviso de aeroporto ou estação de 1 minuto, de qualquer sotaque (EUA, Reino Unido, Canadá, Austrália). Anote o portão/plataforma, o horário e o motivo do aviso. Marque: entendi tudo (B2+), entendi os números e a ideia geral (B1), entendi algumas palavras (A2), não entendi (A1).</p>
+        <h3>Fala (Retórica)</h3>
+        <p>Grave 1 minuto se apresentando a um novo vizinho: quem você é, de onde veio, com o que trabalha e um convite para um café. Ouça e marque: falei sem parar e com variedade (B2+), falei com pausas mas me fiz entender (B1), só frases curtas (A2), não consegui (A1).</p>
+        <p class="aviso-baixo">Se a autoavaliação ficar um nível abaixo do resultado do teste, comece no nível mais baixo.</p>
+      </section>
+      <div class="acoes">
+        <button type="button" class="secundario" id="refazer-fim">Refazer o teste</button>
+      </div>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="miolo">
+    <p class="nota">As respostas não são enviadas. Esta página não pede nome, e-mail nem cadastro.</p>
+  </div>
+</footer>
+<script type="application/json" id="banco">[
+  {
+    "nivel": "A1",
+    "ctx": "Chegada: aeroporto, vizinhos, primeiro aluguel",
+    "qs": [
+      {
+        "n": 1,
+        "skill": "Gramática",
+        "q": "At the airport: \"Hello, ___ name is Ana.\"",
+        "o": [
+          "my",
+          "I",
+          "me",
+          "mine"
+        ],
+        "a": 0,
+        "why": "Pronome possessivo antes de substantivo."
+      },
+      {
+        "n": 2,
+        "skill": "Gramática",
+        "q": "Officer: \"Where ___ you from?\" — \"I'm from Brazil.\"",
+        "o": [
+          "is",
+          "are",
+          "am",
+          "be"
+        ],
+        "a": 1,
+        "why": "To be com you."
+      },
+      {
+        "n": 3,
+        "skill": "Gramática",
+        "q": "Officer: \"How old are you?\" You answer:",
+        "o": [
+          "I have 30 years.",
+          "I am 30 year.",
+          "I am 30.",
+          "I has 30."
+        ],
+        "a": 2,
+        "why": "Idade usa to be, não have."
+      },
+      {
+        "n": 4,
+        "skill": "Vocabulário",
+        "q": "Neighbour: \"This is my son. ___ name is Leo.\"",
+        "o": [
+          "Her",
+          "His",
+          "Its",
+          "Their"
+        ],
+        "a": 1,
+        "why": "Son é masculino singular."
+      },
+      {
+        "n": 5,
+        "skill": "Gramática",
+        "q": "\"My sister ___ in a bank. She is a cashier.\"",
+        "o": [
+          "work",
+          "working",
+          "is work",
+          "works"
+        ],
+        "a": 3,
+        "why": "Presente simples, 3ª pessoa: -s."
+      },
+      {
+        "n": 6,
+        "skill": "Leitura",
+        "q": "Ad: \"Apartment for rent. 2 bedrooms, 1 bathroom. $900 a month.\" How many bedrooms are there?",
+        "o": [
+          "One",
+          "Two",
+          "Three",
+          "Nine"
+        ],
+        "a": 1,
+        "why": "\"2 bedrooms\"."
+      }
+    ]
+  },
+  {
+    "nivel": "A2",
+    "ctx": "Rotina: banco, médico, transporte, aluguel",
+    "qs": [
+      {
+        "n": 7,
+        "skill": "Gramática",
+        "q": "\"Yesterday I ___ to the bank to open an account.\"",
+        "o": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ],
+        "a": 2,
+        "why": "Passado simples de go."
+      },
+      {
+        "n": 8,
+        "skill": "Vocabulário",
+        "q": "Doctor: \"What's the matter?\" — \"I ___ a headache.\"",
+        "o": [
+          "am",
+          "have",
+          "do",
+          "make"
+        ],
+        "a": 1,
+        "why": "Sintomas: have a headache."
+      },
+      {
+        "n": 9,
+        "skill": "Gramática",
+        "q": "\"Excuse me, ___ does the bus to the city centre come?\" — \"Every 20 minutes.\"",
+        "o": [
+          "how often",
+          "how much",
+          "how many",
+          "how long"
+        ],
+        "a": 0,
+        "why": "Frequência: how often."
+      },
+      {
+        "n": 10,
+        "skill": "Gramática",
+        "q": "\"This apartment is ___ than the other one, but it's closer to my work.\"",
+        "o": [
+          "expensiver",
+          "more expensive",
+          "most expensive",
+          "expensive"
+        ],
+        "a": 1,
+        "why": "Comparativo de adjetivo longo."
+      },
+      {
+        "n": 11,
+        "skill": "Gramática",
+        "q": "\"I'm ___ to visit my new neighbours this weekend. I made them a cake.\"",
+        "o": [
+          "go",
+          "goes",
+          "will",
+          "going"
+        ],
+        "a": 3,
+        "why": "Futuro com be going to."
+      },
+      {
+        "n": 12,
+        "skill": "Leitura",
+        "q": "Notice: \"Rent must be paid by the 5th of each month. Late payments: $25 fee.\" If you pay on the 8th:",
+        "o": [
+          "you pay nothing extra",
+          "you pay $25 extra",
+          "you pay half the rent",
+          "you cannot pay"
+        ],
+        "a": 1,
+        "why": "Depois do dia 5 há multa de $25."
+      }
+    ]
+  },
+  {
+    "nivel": "B1",
+    "ctx": "Integração: trabalho, documentos, convivência",
+    "qs": [
+      {
+        "n": 13,
+        "skill": "Gramática",
+        "q": "\"I ___ in Canada since 2022.\"",
+        "o": [
+          "live",
+          "lived",
+          "have lived",
+          "am living"
+        ],
+        "a": 2,
+        "why": "Since + ação que continua: present perfect."
+      },
+      {
+        "n": 14,
+        "skill": "Gramática",
+        "q": "\"If you ___ your passport, call the embassy immediately.\"",
+        "o": [
+          "lose",
+          "will lose",
+          "lost",
+          "would lose"
+        ],
+        "a": 0,
+        "why": "Condicional tipo 1/0: if + presente."
+      },
+      {
+        "n": 15,
+        "skill": "Vocabulário",
+        "q": "HR: \"Could you ___ this form and give it back to me?\"",
+        "o": [
+          "fill on",
+          "fill in",
+          "fill up",
+          "fill at"
+        ],
+        "a": 1,
+        "why": "Preencher formulário: fill in."
+      },
+      {
+        "n": 16,
+        "skill": "Vocabulário",
+        "q": "Neighbour: \"Thanks for having us for dinner!\" The best reply is:",
+        "o": [
+          "\"Yes, I do.\"",
+          "\"Of course not.\"",
+          "\"You're welcome anytime.\"",
+          "\"It doesn't matter me.\""
+        ],
+        "a": 2,
+        "why": "Resposta natural de hospitalidade."
+      },
+      {
+        "n": 17,
+        "skill": "Gramática",
+        "q": "\"The bank ___ I opened my account is near the station.\"",
+        "o": [
+          "who",
+          "what",
+          "when",
+          "where"
+        ],
+        "a": 3,
+        "why": "Pronome relativo de lugar."
+      },
+      {
+        "n": 18,
+        "skill": "Leitura",
+        "q": "Email: \"Hi Marco, the team meeting has been moved from Monday to Wednesday at 10 a.m. Please bring the sales report. Thanks, Julie.\" What must Marco do?",
+        "o": [
+          "Go to a meeting on Monday",
+          "Bring the report on Wednesday",
+          "Write to Julie on Monday",
+          "Cancel the meeting"
+        ],
+        "a": 1,
+        "why": "Reunião passou para quarta; levar o relatório."
+      }
+    ]
+  },
+  {
+    "nivel": "B2",
+    "ctx": "Vida estável: contratos, carreira, comunidade",
+    "qs": [
+      {
+        "n": 19,
+        "skill": "Gramática",
+        "q": "\"If I ___ about the extra fees, I wouldn't have signed the lease.\"",
+        "o": [
+          "knew",
+          "had known",
+          "have known",
+          "would know"
+        ],
+        "a": 1,
+        "why": "Condicional tipo 3: if + past perfect."
+      },
+      {
+        "n": 20,
+        "skill": "Gramática",
+        "q": "\"My references were checked, and I ___ the job the next day.\"",
+        "o": [
+          "offered",
+          "was offering",
+          "was offered",
+          "have offered"
+        ],
+        "a": 2,
+        "why": "Voz passiva: eu recebi a oferta."
+      },
+      {
+        "n": 21,
+        "skill": "Gramática",
+        "q": "\"The landlord told me that he ___ the heating the following week.\"",
+        "o": [
+          "will fixed",
+          "would fix",
+          "fixing",
+          "has fix"
+        ],
+        "a": 1,
+        "why": "Discurso indireto: will vira would."
+      },
+      {
+        "n": 22,
+        "skill": "Vocabulário",
+        "q": "\"Before you sign the contract, read the fine ___ carefully.\"",
+        "o": [
+          "letter",
+          "text",
+          "print",
+          "line"
+        ],
+        "a": 2,
+        "why": "Expressão fixa: the fine print (letras miúdas)."
+      },
+      {
+        "n": 23,
+        "skill": "Gramática",
+        "q": "\"I'd rather you ___ me the truth, even if it's hard to hear.\"",
+        "o": [
+          "tell",
+          "told",
+          "telling",
+          "will tell"
+        ],
+        "a": 1,
+        "why": "Would rather + sujeito + passado."
+      },
+      {
+        "n": 24,
+        "skill": "Leitura",
+        "q": "Job ad: \"Applicants must have at least two years' experience; however, candidates with relevant qualifications will also be considered.\" Who can apply?",
+        "o": [
+          "Only people with 2+ years' experience",
+          "Only people with qualifications",
+          "People with 2+ years' experience or relevant qualifications",
+          "Anyone at all"
+        ],
+        "a": 2,
+        "why": "However abre uma segunda via de candidatura."
+      }
+    ]
+  },
+  {
+    "nivel": "C1",
+    "ctx": "Fluência: trabalho exigente, nuance, leitura densa",
+    "qs": [
+      {
+        "n": 25,
+        "skill": "Gramática",
+        "q": "\"___ had I arrived at the office than the fire alarm went off.\"",
+        "o": [
+          "Hardly",
+          "As soon",
+          "No sooner",
+          "Barely"
+        ],
+        "a": 2,
+        "why": "No sooner ... than (hardly/barely pedem when)."
+      },
+      {
+        "n": 26,
+        "skill": "Vocabulário",
+        "q": "\"She's very reliable; you can always ___ her to do the job properly.\"",
+        "o": [
+          "count in",
+          "count up",
+          "count for",
+          "count on"
+        ],
+        "a": 3,
+        "why": "Count on someone = confiar."
+      },
+      {
+        "n": 27,
+        "skill": "Vocabulário",
+        "q": "\"Our new neighbours went out of their way to make us feel welcome.\" This means they:",
+        "o": [
+          "made a special effort",
+          "took a different route",
+          "left the house early",
+          "avoided us"
+        ],
+        "a": 0,
+        "why": "Go out of one's way = esforçar-se."
+      },
+      {
+        "n": 28,
+        "skill": "Gramática",
+        "q": "\"Had the doctor been told earlier, the problem ___.\"",
+        "o": [
+          "might be avoided",
+          "would avoid",
+          "had been avoided",
+          "might have been avoided"
+        ],
+        "a": 3,
+        "why": "Inversão do condicional 3 + passiva."
+      },
+      {
+        "n": 29,
+        "skill": "Gramática",
+        "q": "\"Not only ___ the report on time, but she also helped her colleagues.\"",
+        "o": [
+          "she finished",
+          "did she finish",
+          "she did finish",
+          "finished she"
+        ],
+        "a": 1,
+        "why": "Not only no início pede inversão."
+      },
+      {
+        "n": 30,
+        "skill": "Leitura",
+        "q": "\"While the company's relocation package is generous, it falls short of covering the high cost of temporary housing in the capital.\" The writer means that the package:",
+        "o": [
+          "does not cover all housing costs",
+          "covers every expense",
+          "is not offered to new staff",
+          "makes housing cheap"
+        ],
+        "a": 0,
+        "why": "Falls short of = não chega a cobrir."
+      }
+    ]
+  }
+]</script>
+<script>
+"use strict";
+(function () {
+  var LETRAS = ["a", "b", "c", "d"];
+  var TITULOS = {
+    A1: "A1 desde o início",
+    A2: "A2 (revisão rápida do A1 opcional)",
+    B1: "B1",
+    B2: "B2",
+    C1: "C1",
+    todos: "C1 com foco em conversação e escrita"
+  };
+  var SIGNIFICADO_TODOS = "Você foi aprovado em todos os níveis; o foco agora é conversação e escrita.";
+  var NIVEIS = JSON.parse(document.getElementById("banco").textContent);
+  var indice = 0;
+  var registros = [];
+
+  if (NIVEIS.length !== 5 || NIVEIS.some(function (n) { return n.qs.length !== 6; })) {
+    throw new Error("Banco de questões incompleto");
+  }
+  NIVEIS.forEach(function (n) {
+    n.qs.forEach(function (q) {
+      if (!Number.isInteger(q.a) || q.a < 0 || q.a > 3 || q.o.length !== 4) {
+        throw new Error("Questão inválida: " + q.n);
+      }
+    });
+  });
+
+  function mostrar(nome, foco) {
+    document.getElementById("tela-intro").hidden = nome !== "intro";
+    document.getElementById("tela-nivel").hidden = nome !== "nivel";
+    document.getElementById("tela-resultado").hidden = nome !== "resultado";
+    if (nome === "intro") document.title = "Teste de nivelamento de inglês";
+    if (nome === "resultado") document.title = "Resultado · Teste de nivelamento de inglês";
+    if (foco) {
+      var el = document.querySelector(foco);
+      if (el) {
+        el.focus({ preventScroll: true });
+        el.scrollIntoView({ block: "start" });
+      }
+    }
+  }
+
+  function criarQuestao(q) {
+    var fs = document.createElement("fieldset");
+    fs.id = "q" + q.n;
+    var legend = document.createElement("legend");
+    legend.className = "sr";
+    legend.textContent = q.skill + ". Questão " + q.n + ". " + q.q;
+    var cabeca = document.createElement("div");
+    cabeca.className = "cabeca";
+    cabeca.setAttribute("aria-hidden", "true");
+    var tipo = document.createElement("span");
+    tipo.className = "tipo";
+    tipo.textContent = q.skill;
+    var num = document.createElement("span");
+    num.className = "num";
+    num.textContent = "Questão " + q.n;
+    var enun = document.createElement("span");
+    enun.className = "enunciado";
+    enun.lang = "en";
+    enun.textContent = q.q;
+    cabeca.append(tipo, num, enun);
+    var falta = document.createElement("span");
+    falta.className = "falta";
+    falta.hidden = true;
+    falta.textContent = "Falta responder";
+    fs.append(legend, cabeca, falta);
+
+    q.o.forEach(function (texto, i) {
+      var id = "q" + q.n + "-op" + i;
+      var label = document.createElement("label");
+      label.className = "opcao";
+      label.htmlFor = id;
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "q" + q.n;
+      input.id = id;
+      input.value = String(i);
+      var letra = document.createElement("span");
+      letra.className = "letra";
+      letra.textContent = LETRAS[i] + ")";
+      var span = document.createElement("span");
+      span.lang = "en";
+      span.textContent = texto;
+      label.append(input, letra, span);
+      input.addEventListener("change", function () {
+        fs.classList.remove("pendente");
+        falta.hidden = true;
+        if (!document.querySelector("#questoes fieldset.pendente")) {
+          var erro = document.getElementById("erro-nivel");
+          erro.hidden = true;
+          erro.textContent = "";
+        }
+      });
+      fs.append(label);
+    });
+    return fs;
+  }
+
+  function renderNivel() {
+    var nv = NIVEIS[indice];
+    document.getElementById("titulo-nivel").textContent = "Nível " + nv.nivel;
+    document.getElementById("contexto-nivel").textContent = nv.ctx;
+    var primeira = nv.qs[0].n;
+    var ultima = nv.qs[nv.qs.length - 1].n;
+    document.getElementById("progresso").textContent = "Bloco " + (indice + 1) + " de " + NIVEIS.length + " · questões " + primeira + " a " + ultima;
+    var barra = document.getElementById("barra");
+    barra.style.width = Math.round(((indice + 1) / NIVEIS.length) * 100) + "%";
+    var trilha = document.getElementById("trilha");
+    trilha.setAttribute("aria-valuenow", String(indice + 1));
+    trilha.setAttribute("aria-valuetext", "Bloco " + (indice + 1) + " de " + NIVEIS.length + ", nível " + nv.nivel);
+    document.getElementById("regra-nivel").textContent = "4 ou mais acertos aprovam o nível. 3 erros ou mais param o teste aqui.";
+    var erro = document.getElementById("erro-nivel");
+    erro.hidden = true;
+    erro.textContent = "";
+    var box = document.getElementById("questoes");
+    box.replaceChildren();
+    nv.qs.forEach(function (q) { box.append(criarQuestao(q)); });
+    document.title = "Nível " + nv.nivel + " · Teste de nivelamento de inglês";
+    mostrar("nivel", "#titulo-nivel");
+  }
+
+  function validarBloco() {
+    var nv = NIVEIS[indice];
+    var primeiro = null;
+    var faltam = 0;
+    nv.qs.forEach(function (q) {
+      var fs = document.getElementById("q" + q.n);
+      var marcado = fs.querySelector("input:checked");
+      var aviso = fs.querySelector(".falta");
+      if (!marcado) {
+        faltam += 1;
+        fs.classList.add("pendente");
+        aviso.hidden = false;
+        if (!primeiro) primeiro = fs.querySelector("input");
+      } else {
+        fs.classList.remove("pendente");
+        aviso.hidden = true;
+      }
+    });
+    return { faltam: faltam, primeiro: primeiro };
+  }
+
+  function continuar(ev) {
+    if (ev.detail > 1) return;
+    var checagem = validarBloco();
+    var erro = document.getElementById("erro-nivel");
+    if (checagem.faltam) {
+      erro.textContent = "Responda às 6 questões deste nível para continuar.";
+      erro.hidden = false;
+      if (checagem.primeiro) checagem.primeiro.focus();
+      return;
+    }
+    erro.hidden = true;
+    erro.textContent = "";
+
+    var nv = NIVEIS[indice];
+    var detalhes = nv.qs.map(function (q) {
+      var escolha = Number(document.querySelector('input[name="q' + q.n + '"]:checked').value);
+      return {
+        n: q.n,
+        skill: q.skill,
+        q: q.q,
+        o: q.o,
+        a: q.a,
+        why: q.why,
+        escolha: escolha,
+        ok: escolha === q.a,
+        nivel: nv.nivel
+      };
+    });
+    var acertos = detalhes.filter(function (d) { return d.ok; }).length;
+    registros.push({ nivel: nv.nivel, acertos: acertos, detalhes: detalhes });
+    var aprovado = acertos >= 4;
+    var ultimo = indice === NIVEIS.length - 1;
+    if (!aprovado) renderResultado(nv.nivel);
+    else if (ultimo) renderResultado("todos");
+    else {
+      indice += 1;
+      renderNivel();
+    }
+  }
+
+  function renderResultado(chave) {
+    var pontos = registros.reduce(function (s, r) { return s + r.acertos; }, 0);
+    var respondidas = registros.reduce(function (s, r) { return s + r.detalhes.length; }, 0);
+    document.getElementById("pontos").textContent = String(pontos);
+    document.getElementById("resumo-pontos").textContent = "Você respondeu " + respondidas + " questões. 1 ponto por acerto, máximo de 30.";
+    var frase;
+    var seguintes = [];
+    if (chave === "todos") {
+      frase = "Você foi aprovado em todos os blocos: 4 ou mais acertos em cada nível.";
+    } else {
+      var ultimoReg = registros[registros.length - 1];
+      var erros = ultimoReg.detalhes.length - ultimoReg.acertos;
+      frase = "O teste parou no " + chave + " porque você errou " + erros + " das 6 questões desse nível.";
+      var idx = NIVEIS.findIndex(function (n) { return n.nivel === chave; });
+      seguintes = NIVEIS.slice(idx + 1).map(function (n) { return n.nivel; });
+    }
+    document.getElementById("frase-parada").textContent = frase;
+    var pulados = document.getElementById("niveis-seguintes");
+    if (seguintes.length) {
+      pulados.hidden = false;
+      pulados.textContent = "Os níveis seguintes não entraram no teste: " + seguintes.join(", ") + ".";
+    } else {
+      pulados.hidden = true;
+      pulados.textContent = "";
+    }
+    document.getElementById("nivel-recomendado").textContent = TITULOS[chave];
+    if (chave === "todos") {
+      document.getElementById("significado").textContent = SIGNIFICADO_TODOS;
+    } else {
+      var nv = NIVEIS.find(function (n) { return n.nivel === chave; });
+      document.getElementById("significado").textContent = nv.ctx;
+    }
+
+    var ul = document.getElementById("por-bloco");
+    ul.replaceChildren();
+    registros.forEach(function (r) {
+      var li = document.createElement("li");
+      var aprovado = r.acertos >= 4;
+      var nome = document.createElement("span");
+      nome.className = "nome";
+      nome.textContent = r.nivel;
+      var resumo = document.createElement("span");
+      resumo.append(document.createTextNode(r.acertos + " de 6 — "));
+      var selo = document.createElement("span");
+      selo.className = "selo " + (aprovado ? "ok" : "ruim");
+      selo.textContent = aprovado ? "aprovado" : "não aprovado";
+      resumo.append(selo);
+      li.append(nome, document.createTextNode(" "), resumo);
+      ul.append(li);
+    });
+
+    var ol = document.getElementById("revisao");
+    ol.replaceChildren();
+    registros.forEach(function (r) {
+      r.detalhes.forEach(function (d) {
+        var li = document.createElement("li");
+        li.className = d.ok ? "certa" : "incorreta";
+        li.dataset.n = String(d.n);
+        var meta = document.createElement("p");
+        meta.className = "meta";
+        var tipo = document.createElement("span");
+        tipo.className = "tipo";
+        tipo.textContent = d.skill;
+        meta.append(tipo, document.createTextNode(" Questão " + d.n + " · " + d.nivel));
+        var en = document.createElement("p");
+        en.className = "enunciado";
+        en.lang = "en";
+        en.textContent = d.q;
+        var pSua = document.createElement("p");
+        pSua.className = "sua";
+        pSua.append("Sua resposta: ");
+        var marcada = document.createElement("strong");
+        marcada.lang = "en";
+        marcada.textContent = LETRAS[d.escolha] + ") " + d.o[d.escolha];
+        var julg = document.createElement("span");
+        julg.className = "julgamento";
+        julg.textContent = d.ok ? "certa" : "incorreta";
+        pSua.append(marcada, document.createTextNode(" — "), julg);
+        li.append(meta, en, pSua);
+        if (!d.ok) {
+          var pG = document.createElement("p");
+          pG.className = "gabarito";
+          pG.append("Resposta certa: ");
+          var correta = document.createElement("strong");
+          correta.className = "correta";
+          correta.lang = "en";
+          correta.textContent = LETRAS[d.a] + ") " + d.o[d.a];
+          pG.append(correta);
+          li.append(pG);
+        }
+        var pW = document.createElement("p");
+        pW.className = "porque";
+        var rot = document.createElement("span");
+        rot.className = "rotulo";
+        rot.textContent = "Explicação: ";
+        var tx = document.createElement("span");
+        tx.className = "texto-porque";
+        tx.textContent = d.why;
+        pW.append(rot, tx);
+        li.append(pW);
+        ol.append(li);
+      });
+    });
+
+    mostrar("resultado", "#titulo-resultado");
+  }
+
+  function reiniciar() {
+    indice = 0;
+    registros = [];
+    document.getElementById("revisao").replaceChildren();
+    document.getElementById("por-bloco").replaceChildren();
+    document.getElementById("pontos").textContent = "";
+    mostrar("intro");
+    window.scrollTo(0, 0);
+    document.getElementById("comecar").focus();
+  }
+
+  document.getElementById("comecar").addEventListener("click", function () {
+    indice = 0;
+    registros = [];
+    renderNivel();
+  });
+  document.getElementById("continuar").addEventListener("click", continuar);
+  document.getElementById("refazer").addEventListener("click", reiniciar);
+  document.getElementById("refazer-fim").addEventListener("click", reiniciar);
+  mostrar("intro");
+})();
+</script>
+</body>
+</html>
