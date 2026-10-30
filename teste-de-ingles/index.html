@@ -327,6 +327,26 @@ fieldset.pendente { border-color: var(--bad); box-shadow: inset 4px 0 0 var(--ba
 .selo.ok { color: var(--ok); }
 .selo.ruim { color: var(--bad); }
 .conferencia { color: var(--muted); }
+.regra {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 0.45rem;
+  background: var(--paper);
+}
+.regra caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 700;
+  color: var(--forest);
+  padding: 0 0 0.4rem;
+}
+.regra th, .regra td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.regra thead th { background: var(--forest); color: var(--on-forest); }
 #revisao { list-style: none; padding: 0; margin: 0.4rem 0 0; }
 #revisao li {
   background: var(--paper);
@@ -415,9 +435,31 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
       <h2>Como funciona</h2>
       <ol class="passos">
         <li>Responda em ordem, sem dicionário. Os blocos vão do A1 ao C1, com 6 questões cada, e ficam mais difíceis.</li>
-        <li>O nível está aprovado com 4 ou mais acertos. Se você errar 3 ou mais, o teste para: esse é o seu nível de entrada.</li>
+        <li>A1, A2 e B1 são aprovados com 4 ou mais acertos em 6 (3 erros ou mais param o teste). B2 e C1 são aprovados com 5 ou mais (2 erros ou mais param o teste). O bloco em que o teste para é o seu nível de entrada.</li>
         <li>No final você vê a pontuação, o nível recomendado e a revisão com as explicações.</li>
       </ol>
+      <table class="regra" id="tabela-regra">
+        <caption>Regra de aprovação</caption>
+        <thead>
+          <tr>
+            <th scope="col">Níveis</th>
+            <th scope="col">Aprovado com</th>
+            <th scope="col">O teste para com</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">A1, A2 e B1</th>
+            <td>4 ou mais acertos em 6</td>
+            <td>3 erros ou mais</td>
+          </tr>
+          <tr>
+            <th scope="row">B2 e C1</th>
+            <td>5 ou mais acertos em 6</td>
+            <td>2 erros ou mais</td>
+          </tr>
+        </tbody>
+      </table>
       <div class="acoes">
         <button type="button" class="primary" id="comecar">Começar o teste</button>
       </div>
@@ -454,7 +496,29 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
       </div>
       <h3>Por bloco</h3>
       <ul id="por-bloco"></ul>
-      <p class="conferencia">Um nível está aprovado com 4 ou mais acertos em 6. A pontuação total serve de conferência; vale o primeiro nível não aprovado.</p>
+      <table class="regra" id="tabela-regra-resultado">
+        <caption>Regra de aprovação</caption>
+        <thead>
+          <tr>
+            <th scope="col">Níveis</th>
+            <th scope="col">Aprovado com</th>
+            <th scope="col">O teste para com</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">A1, A2 e B1</th>
+            <td>4 ou mais acertos em 6</td>
+            <td>3 erros ou mais</td>
+          </tr>
+          <tr>
+            <th scope="row">B2 e C1</th>
+            <td>5 ou mais acertos em 6</td>
+            <td>2 erros ou mais</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="conferencia">A pontuação total serve de conferência; vale o primeiro nível não aprovado.</p>
       <div class="acoes">
         <button type="button" class="secundario" id="refazer">Refazer o teste</button>
       </div>
@@ -916,6 +980,16 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
     todos: "C1 com foco em conversação e escrita"
   };
   var SIGNIFICADO_TODOS = "Você foi aprovado em todos os níveis; o foco agora é conversação e escrita.";
+  var FRASE_TODOS = "Você foi aprovado em todos os blocos: 4 ou mais em A1, A2 e B1, e 5 ou mais em B2 e C1.";
+  function minimoParaAprovar(nivel) {
+    return nivel === "B2" || nivel === "C1" ? 5 : 4;
+  }
+  function textoRegra(nivel) {
+    if (nivel === "B2" || nivel === "C1") {
+      return "5 ou mais acertos aprovam o nível. 2 erros ou mais param o teste aqui.";
+    }
+    return "4 ou mais acertos aprovam o nível. 3 erros ou mais param o teste aqui.";
+  }
   var NIVEIS = JSON.parse(document.getElementById("banco").textContent);
   var indice = 0;
   var registros = [];
@@ -1015,7 +1089,7 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
     var trilha = document.getElementById("trilha");
     trilha.setAttribute("aria-valuenow", String(indice + 1));
     trilha.setAttribute("aria-valuetext", "Bloco " + (indice + 1) + " de " + NIVEIS.length + ", nível " + nv.nivel);
-    document.getElementById("regra-nivel").textContent = "4 ou mais acertos aprovam o nível. 3 erros ou mais param o teste aqui.";
+    document.getElementById("regra-nivel").textContent = textoRegra(nv.nivel);
     var erro = document.getElementById("erro-nivel");
     erro.hidden = true;
     erro.textContent = "";
@@ -1077,7 +1151,7 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
     });
     var acertos = detalhes.filter(function (d) { return d.ok; }).length;
     registros.push({ nivel: nv.nivel, acertos: acertos, detalhes: detalhes });
-    var aprovado = acertos >= 4;
+    var aprovado = acertos >= minimoParaAprovar(nv.nivel);
     var ultimo = indice === NIVEIS.length - 1;
     if (!aprovado) renderResultado(nv.nivel);
     else if (ultimo) renderResultado("todos");
@@ -1095,7 +1169,7 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
     var frase;
     var seguintes = [];
     if (chave === "todos") {
-      frase = "Você foi aprovado em todos os blocos: 4 ou mais acertos em cada nível.";
+      frase = FRASE_TODOS;
     } else {
       var ultimoReg = registros[registros.length - 1];
       var erros = ultimoReg.detalhes.length - ultimoReg.acertos;
@@ -1124,7 +1198,7 @@ footer .miolo { padding-top: 0.2rem; padding-bottom: 2rem; }
     ul.replaceChildren();
     registros.forEach(function (r) {
       var li = document.createElement("li");
-      var aprovado = r.acertos >= 4;
+      var aprovado = r.acertos >= minimoParaAprovar(r.nivel);
       var nome = document.createElement("span");
       nome.className = "nome";
       nome.textContent = r.nivel;
